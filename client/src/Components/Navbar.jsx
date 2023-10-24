@@ -57,7 +57,8 @@ const Navbar = () => {
               <Text fontWeight={"extrabold"}>My Tech Mart</Text>
             </Flex>
           </Link>
-          <HStack>
+          
+          <HStack as={"nav"} spacing={4} display={{base : "none", md : "flex"}}>
             {links.map((link, i) => (
                 <NavLink key={i} path={link.path}>
                     {link.linkname}
@@ -70,9 +71,22 @@ const Navbar = () => {
             <NavLink>
                 <Icon as={colorMode === "light" ? MoonIcon : SunIcon } onClick={ ()=>{toggleColorMode()} }/>
             </NavLink>
-            
+            <Button as={ReactRouterLink} to={'/login'} p={2} fontSize="sm" fontWeight={400} variant={"link"}>Sign In</Button>
+            <Button display={{base : "none", md : "inline-flex"}} as={ReactRouterLink} to={'/registration'} m={2} fontSize="sm" _hover={{bg : "orange.400"}} bg="orange.500">Sign Up</Button>
         </Flex>
       </Flex>
+      {isOpen ? (
+        <Box>
+            <Stack as="nav" spacing={4}>
+                {links.map((link, i) => (
+                    <NavLink key={i} path={link.path}>{link.linkname}</NavLink>
+                ))}
+                <NavLink key={1} path={"/registration"}>
+                    Sign Up
+                </NavLink>
+            </Stack>
+        </Box>
+      ) : null}
     </Box>
   );
 };
