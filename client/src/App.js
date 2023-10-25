@@ -10,6 +10,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/cart" element={<ProductsPage />} />
         </Routes>
       </main>
     </div>
